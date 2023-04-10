@@ -6,8 +6,9 @@
 
 <style>
 .today-page {
-  height: 93vh;
+  height: 92vh;
   background-position: center;
+  background-size: cover;
   background-image: url('/vue-use.png');
 }
 </style>

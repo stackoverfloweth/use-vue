@@ -16,7 +16,7 @@
   border-bottom: 1px solid var(--slate-200);
   align-items: center;
   justify-content: space-between;
-  height: 7vh;
+  height: 8vh;
 }
 
 .navigation-header__title {
