@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/95aed788-9ebe-4f0a-8a09-c89f8d7209eb/deploy-status)](https://app.netlify.com/sites/startling-marzipan-66e8b8/deploys)
+
 # Help us save Vue.js
 
 [https://usevue.dev/](https://usevue.dev/)
