@@ -1,11 +1,10 @@
 :root {
-    --space-1: 0.1rem;
-    --space-2: 0.25rem;
-    --space-3: 0.5rem;
-    --space-4: 1rem;
-    --space-5: 2.5rem;
-    --space-6: 5rem;
-    --space-7: 10rem;
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 1rem;
+    --space-4: 2.5rem;
+    --space-5: 5rem;
+    --space-6: 10rem;
     --size-1: 2.5rem;
     --size-2: 5rem;
     --size-3: 15rem;
@@ -139,7 +138,7 @@
     --lime-800: #3f6212;
     --lime-900: #365314;
 
-    --green-50: #f0fdf4;
+    --green-50: #f9fffb;
     --green-100: #dcfce7;
     --green-200: #bbf7d0;
     --green-300: #86efac;

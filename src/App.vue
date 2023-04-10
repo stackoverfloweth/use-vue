@@ -8,11 +8,11 @@
   import NavigationHeader from '@/components/NavigationHeader.vue'
 
   const { setTheme } = useColorTheme()
-  setTheme('dark')
+  setTheme('light')
 </script>
 
 <style>
   html, body {
-    background-color: var(--slate-900);
+    background-color: var(--green-50);
   }
 </style>
