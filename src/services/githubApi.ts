@@ -24,8 +24,9 @@ export class GitHubApi extends BaseApi<AuthenticatedApiConfig> {
   }
 
   public getVueUserCount(type: UserType): Promise<number> {
-    console.log('making the call', this)
     const query = mapper.map('UserSearchQuery', { language: 'vue', type }, 'string')
+
+    console.log(this.getInstance())
 
     return this.getInstance().get<SearchResult<UserSearch>>(`/search/users?q=${query}&per_page=1`)
       .then(({ data }) => data.total_count)

@@ -20,8 +20,8 @@ export class BaseApi<T extends BaseApiConfig | AuthenticatedApiConfig = BaseApiC
       ...this.apiConfig,
       baseURL: this.composeBaseUrl(),
       headers: this.composeHeaders(),
-      transformResponse: this.composeResponseTransformers(),
-      transformRequest: this.composeRequestTransformers(),
+      // transformResponse: this.composeResponseTransformers(),
+      // transformRequest: this.composeRequestTransformers(),
     })
   }
 
@@ -46,11 +46,6 @@ export class BaseApi<T extends BaseApiConfig | AuthenticatedApiConfig = BaseApiC
   protected composeBaseUrl(): string {
     const repeatingSlashes = /(\/+)/g
 
-    console.log('composing', [
-      this.apiConfig.baseURL,
-      this.routePrefix,
-    ])
-
     return [
       this.apiConfig.baseURL,
       this.routePrefix,
@@ -65,21 +60,6 @@ export class BaseApi<T extends BaseApiConfig | AuthenticatedApiConfig = BaseApiC
       ...this.getAuthorizationHeader(),
       ...this.apiConfig.headers,
     }
-  }
-
-  protected composeResponseTransformers(): AxiosResponseTransformer[] {
-    return [
-      ...asArray(axios.defaults.transformResponse ?? []),
-      this.checkApiFailureResponse,
-      ...asArray(this.apiConfig.transformResponse ?? []),
-    ]
-  }
-
-  protected composeRequestTransformers(): AxiosRequestTransformer[] {
-    return [
-      ...asArray(this.apiConfig.transformRequest ?? []),
-      ...asArray(axios.defaults.transformRequest ?? []),
-    ]
   }
 }
 
