@@ -1,7 +1,7 @@
 export type Variables = {
-  baseUrl: string,
+  githubToken: string,
 }
 
 export const variables: Variables = {
-  baseUrl: import.meta.env.VITE_BASE_URL,
+  githubToken: import.meta.env.VITE_GITHUB_TOKEN,
 }

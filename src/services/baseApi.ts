@@ -2,7 +2,7 @@ import axios, { AxiosInstance, AxiosRequestTransformer, AxiosResponseTransformer
 import { ApiFailureError } from '@/models/apiFailureError'
 import { AuthenticatedApiConfig, isAuthenticatedApiConfig } from '@/types/authenticatedApiConfig'
 import { isFailureResponse } from '@/types/failureResponse'
-import { variables, isDefined, asArray } from '@/utilities'
+import { isDefined, asArray } from '@/utilities'
 
 export type BaseApiConfig = CreateAxiosDefaults
 
@@ -47,7 +47,7 @@ export class BaseApi<T extends BaseApiConfig | AuthenticatedApiConfig = BaseApiC
     const repeatingSlashes = /(\/+)/g
 
     return [
-      this.apiConfig.baseURL ?? variables.baseUrl,
+      this.apiConfig.baseURL,
       this.routePrefix,
     ]
       .filter(isDefined)
