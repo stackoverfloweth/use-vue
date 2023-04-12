@@ -15,7 +15,7 @@ export class BaseApi<T extends BaseApiConfig | AuthenticatedApiConfig = BaseApiC
     this.routePrefix = routePrefix
   }
 
-  protected get instance(): AxiosInstance {
+  protected getInstance(): AxiosInstance {
     return axios.create({
       ...this.apiConfig,
       baseURL: this.composeBaseUrl(),
@@ -25,7 +25,7 @@ export class BaseApi<T extends BaseApiConfig | AuthenticatedApiConfig = BaseApiC
     })
   }
 
-  protected get authorizationHeader(): { Authorization?: string } {
+  protected getAuthorizationHeader(): { Authorization?: string } {
     if (isAuthenticatedApiConfig(this.apiConfig)) {
       return {
         Authorization: `bearer ${this.apiConfig.apiKey}`,
@@ -46,6 +46,8 @@ export class BaseApi<T extends BaseApiConfig | AuthenticatedApiConfig = BaseApiC
   protected composeBaseUrl(): string {
     const repeatingSlashes = /(\/+)/g
 
+    console.log('here', this.apiConfig)
+
     return [
       this.apiConfig.baseURL,
       this.routePrefix,
@@ -57,7 +59,7 @@ export class BaseApi<T extends BaseApiConfig | AuthenticatedApiConfig = BaseApiC
 
   protected composeHeaders(): BaseApiConfig['headers'] {
     return {
-      ...this.authorizationHeader,
+      ...this.getAuthorizationHeader(),
       ...this.apiConfig.headers,
     }
   }

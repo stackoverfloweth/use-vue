@@ -6,9 +6,14 @@
 <script lang="ts" setup>
   import { useColorTheme } from '@prefecthq/prefect-design'
   import NavigationHeader from '@/components/NavigationHeader.vue'
+  import { githubApi } from '@/services'
 
   const { setTheme } = useColorTheme()
   setTheme('light')
+
+  const users = await githubApi.getVueUsers()
+
+  console.log({ users })
 </script>
 
 <style>
