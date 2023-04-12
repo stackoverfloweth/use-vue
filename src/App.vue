@@ -11,9 +11,9 @@
   const { setTheme } = useColorTheme()
   setTheme('light')
 
-  const users = await githubApi.getVueUsers()
+  // const users = await githubApi.getVueUsers()
 
-  console.log({ users })
+  // console.log({ users })
 </script>
 
 <style>
