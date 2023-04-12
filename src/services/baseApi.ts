@@ -46,8 +46,6 @@ export class BaseApi<T extends BaseApiConfig | AuthenticatedApiConfig = BaseApiC
   protected composeBaseUrl(): string {
     const repeatingSlashes = /(\/+)/g
 
-    console.log('here', this.apiConfig)
-
     return [
       this.apiConfig.baseURL,
       this.routePrefix,

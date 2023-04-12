@@ -18,6 +18,10 @@ export const mapUserSearchQueryToString: MapFunction<UserSearchQuery, string> = 
     queries.push(`location:${source.location}`)
   }
 
+  if (source.type) {
+    queries.push(`type:${source.type === 'Organization' ? 'org' : source.type}`)
+  }
+
   if (source.followersMin) {
     if (source.followersMax) {
       queries.push(`followers:${source.followersMin}..${source.followersMax}`)

@@ -1,5 +1,5 @@
 import { createActions } from '@prefecthq/vue-compositions'
-import { User } from '@/models'
+import { User, UserType } from '@/models'
 import { BaseApi } from '@/services/baseApi'
 import { mapper } from '@/services/mapper'
 import { AuthenticatedApiConfig, SearchResult, UserSearch } from '@/types'
@@ -21,6 +21,13 @@ export class GitHubApi extends BaseApi<AuthenticatedApiConfig> {
 
     return this.getInstance().get<SearchResult<UserSearch>>(`/search/users?q=${query}&sort=${sorting.sort}&order=${sorting.order}&per_page=${pagination.per_page}&page=${pagination.page}`)
       .then(({ data }) => mapper.map('UserSearch', data.items, 'User'))
+  }
+
+  public getVueUserCount(type: UserType): Promise<number> {
+    const query = mapper.map('UserSearchQuery', { language: 'vue', type }, 'string')
+
+    return this.getInstance().get<SearchResult<UserSearch>>(`/search/users?q=${query}&per_page=1`)
+      .then(({ data }) => data.total_count)
   }
 }
 
