@@ -16,7 +16,6 @@ export class BaseApi<T extends BaseApiConfig | AuthenticatedApiConfig = BaseApiC
   }
 
   protected getInstance(): AxiosInstance {
-    console.log('here', this.apiConfig)
     return axios.create({
       ...this.apiConfig,
       baseURL: this.composeBaseUrl(),
@@ -46,6 +45,11 @@ export class BaseApi<T extends BaseApiConfig | AuthenticatedApiConfig = BaseApiC
 
   protected composeBaseUrl(): string {
     const repeatingSlashes = /(\/+)/g
+
+    console.log('composing', [
+      this.apiConfig.baseURL,
+      this.routePrefix,
+    ])
 
     return [
       this.apiConfig.baseURL,
