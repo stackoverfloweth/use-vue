@@ -23,12 +23,12 @@
 <script lang="ts" setup>
   import { useSubscription } from '@prefecthq/vue-compositions'
   import { computed } from 'vue'
-  import { githubApi } from '@/services/githubApi'
+  import { getVueUserCount } from '@/services/githubApi'
 
-  const userCountSubscription = useSubscription(githubApi.getVueUserCount, ['User'])
+  const userCountSubscription = useSubscription(getVueUserCount, ['User'])
   const userCount = computed(() => userCountSubscription.response?.toLocaleString() ?? '--')
 
-  const orgCountSubscription = useSubscription(githubApi.getVueUserCount, ['Organization'])
+  const orgCountSubscription = useSubscription(getVueUserCount, ['Organization'])
   const orgCount = computed(() => orgCountSubscription.response?.toLocaleString() ?? '--')
 </script>
 
