@@ -23,11 +23,16 @@ export class GitHubApi extends BaseApi<AuthenticatedApiConfig> {
       .then(({ data }) => mapper.map('UserSearch', data.items, 'User'))
   }
 
-  public getVueUserCount(type: UserType): Promise<number> {
+  public async getVueUserCount(type: UserType): Promise<number> {
     const query = mapper.map('UserSearchQuery', { language: 'vue', type }, 'string')
 
-    return this.getInstance().get<SearchResult<UserSearch>>(`/search/users?q=${query}&per_page=1`)
-      .then(({ data }) => data.total_count)
+    const response = await fetch(`${variables.githubBaseUrl}/search/users?q=${query}&per_page=1`, {
+      headers: { Authorization: `bearer: ${variables.githubToken}` },
+    })
+
+    const data: SearchResult<UserSearch> = await response.json()
+
+    return data.total_count
   }
 }
 
