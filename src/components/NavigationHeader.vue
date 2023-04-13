@@ -1,12 +1,23 @@
 <template>
   <div class="navigation-header">
-    <div class="navigation-header__title">
-      <img src="/vue-use-logo.png" class="navigation-header__logo" />
+    <p-link class="navigation-header__title" :to="routes.home()">
+      <img src="/vue-use-logo.png" class="navigation-header__logo">
       <p>Use Vue</p>
-    </div>
-    <p-button class="navigation-header__github-link" size="lg" icon="GitHubIcon" to="https://github.com/stackoverfloweth/use-vue" flat rounded  />
+    </p-link>
+    <p-button
+      class="navigation-header__github-link"
+      size="lg"
+      icon="GitHubIcon"
+      to="https://github.com/stackoverfloweth/use-vue"
+      flat
+      rounded
+    />
   </div>
 </template>
+
+<script lang="ts" setup>
+  import { routes } from '@/router/routes'
+</script>
 
 <style>
 .navigation-header {

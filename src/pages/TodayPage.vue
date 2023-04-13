@@ -1,6 +1,6 @@
 <template>
   <div class="today-page">
-    <div class="today-page__count">
+    <p-link class="today-page__count" :to="routes.developers()">
       <div class="today-page__count-header">
         Developers using Vue <p-tooltip text="Public user profiles on GitHub (non-organization) that use Vue.js">
           <p-icon icon="InformationCircleIcon" />
@@ -9,9 +9,9 @@
       <div class="today-page__count-value">
         {{ userCount }}
       </div>
-    </div>
+    </p-link>
 
-    <div class="today-page__count">
+    <p-link class="today-page__count" :to="routes.organizations()">
       <div class="today-page__count-header">
         Organizations using Vue <p-tooltip text="Public organizations on GitHub that use Vue.js">
           <p-icon icon="InformationCircleIcon" />
@@ -20,7 +20,7 @@
       <div class="today-page__count-value">
         {{ orgCount }}
       </div>
-    </div>
+    </p-link>
 
     <div class="today-page__mission">
       <MissionStatement />
@@ -32,12 +32,13 @@
   import { useSubscription } from '@prefecthq/vue-compositions'
   import { computed } from 'vue'
   import MissionStatement from '@/components/MissionStatement.vue'
+  import { routes } from '@/router/routes'
   import { getVueUserCount } from '@/services/githubApi'
 
-  const userCountSubscription = useSubscription(getVueUserCount, ['User'])
+  const userCountSubscription = useSubscription(getVueUserCount, ['User'], { lifecycle: 'app' })
   const userCount = computed(() => userCountSubscription.response?.toLocaleString() ?? '--')
 
-  const orgCountSubscription = useSubscription(getVueUserCount, ['Organization'])
+  const orgCountSubscription = useSubscription(getVueUserCount, ['Organization'], { lifecycle: 'app' })
   const orgCount = computed(() => orgCountSubscription.response?.toLocaleString() ?? '--')
 </script>
 

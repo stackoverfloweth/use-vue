@@ -7,6 +7,16 @@ const routeRecords: AppRouteRecord[] = [
     name: 'home',
     component: () => import('@/pages/TodayPage.vue'),
   },
+  {
+    path: '/vue-developers',
+    name: 'developers',
+    component: () => import('@/pages/EngineersList.vue'),
+  },
+  {
+    path: '/vue-organizations',
+    name: 'organizations',
+    component: () => import('@/pages/OrganizationsList.vue'),
+  },
 ]
 
 const router = createRouter({

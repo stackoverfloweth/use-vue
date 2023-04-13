@@ -19,7 +19,7 @@
   "homepage": "https://github.com/stackoverfloweth/use-vue#readme",
   "dependencies": {
     "@prefecthq/prefect-design": "1.7.0",
-    "@prefecthq/vue-compositions": "1.3.5",
+    "@prefecthq/vue-compositions": "1.4.2",
     "date-fns": "^2.29.3",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
