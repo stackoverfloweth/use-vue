@@ -2,7 +2,7 @@
   <div class="today-page">
     <div class="today-page__count">
       <div class="today-page__count-header">
-        Vue Developers on GitHub
+        Developers using Vue
       </div>
       <div class="today-page__count-value">
         {{ userCount }}

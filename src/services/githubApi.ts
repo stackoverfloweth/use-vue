@@ -11,7 +11,7 @@ import { variables } from '@/utilities'
 export class GitHubApi extends BaseApi<AuthenticatedApiConfig> {
   public constructor() {
     super({
-      baseURL: 'https://api.github.com',
+      baseURL: variables.githubBaseUrl,
       apiKey: variables.githubToken,
     })
   }
@@ -25,8 +25,6 @@ export class GitHubApi extends BaseApi<AuthenticatedApiConfig> {
 
   public getVueUserCount(type: UserType): Promise<number> {
     const query = mapper.map('UserSearchQuery', { language: 'vue', type }, 'string')
-
-    console.log(this.getInstance())
 
     return this.getInstance().get<SearchResult<UserSearch>>(`/search/users?q=${query}&per_page=1`)
       .then(({ data }) => data.total_count)
