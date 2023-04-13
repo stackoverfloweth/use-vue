@@ -1,8 +1,8 @@
 import { User, UserType } from '@/models/user'
 import { MapFunction } from '@/services/mapper'
-import { UserSearch } from '@/types/gitHub'
+import { UserSearchResult } from '@/types/gitHub'
 
-export const mapUserSearchToUser: MapFunction<UserSearch, User> = function(source) {
+export const mapUserSearchResultToUser: MapFunction<UserSearchResult, User> = function(source) {
   return new User({
     login: source.login,
     id: source.id,

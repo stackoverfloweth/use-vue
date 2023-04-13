@@ -1,7 +1,13 @@
-import { mapUserSearchToUser } from '@/maps/user'
-import { mapUserSearchQueryToString } from '@/maps/userSearchQuery'
+import { mapPaginationToQueryString } from '@/maps/pagination'
+import { mapUserSearchResultToUser } from '@/maps/user'
+import { mapUserSearchQueryToQueryString } from '@/maps/userSearchQuery'
+import { mapUserSearchRequestToQueryString } from '@/maps/userSearchRequest'
+import { mapUserSearchSortingToQueryString } from '@/maps/userSearchSorting'
 
 export const maps = {
-  UserSearch: { User: mapUserSearchToUser },
-  UserSearchQuery: { string: mapUserSearchQueryToString },
+  Pagination: { QueryString: mapPaginationToQueryString },
+  UserSearchRequest: { QueryString: mapUserSearchRequestToQueryString },
+  UserSearchResult: { User: mapUserSearchResultToUser },
+  UserSearchSorting: { QueryString: mapUserSearchSortingToQueryString },
+  UserSearchQuery: { QueryString: mapUserSearchQueryToQueryString },
 }

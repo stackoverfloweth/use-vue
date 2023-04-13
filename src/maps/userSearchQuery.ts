@@ -1,7 +1,7 @@
 import { MapFunction } from '@/services/mapper'
 import { UserSearchQuery } from '@/types/gitHub/userSearchQuery'
 
-export const mapUserSearchQueryToString: MapFunction<UserSearchQuery, string> = function(source) {
+export const mapUserSearchQueryToQueryString: MapFunction<UserSearchQuery, string[]> = function(source) {
   const queries: string[] = []
 
   if (source.userName) {
@@ -30,5 +30,5 @@ export const mapUserSearchQueryToString: MapFunction<UserSearchQuery, string> = 
     }
   }
 
-  return queries.join('+')
+  return [`q=${queries.join('+')}`]
 }

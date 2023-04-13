@@ -1,4 +1,4 @@
-export type UserSearch = {
+export type UserSearchResult = {
   login: string,
   id: number,
   node_id: string,
