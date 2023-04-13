@@ -24,6 +24,7 @@
   display: flex;
   padding: var(--space-3);
   gap: var(--space-3);
+  background-color: var(--green-50);
   border-bottom: 1px solid var(--slate-200);
   align-items: center;
   justify-content: space-between;

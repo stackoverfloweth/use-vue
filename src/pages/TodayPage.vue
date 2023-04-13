@@ -52,10 +52,6 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   padding: var(--space-3);
   gap: var(--space-3);
-  height: 92vh;
-  background-position: center;
-  background-size: cover;
-  background-image: url('/vue-use.png');
 }
 
 .today-page__count {
@@ -75,7 +71,6 @@
 .today-page__mission {
   display: flex;
   justify-content: center;
-  overflow-y: auto;
   grid-column: 1 / -1;
 }
 
@@ -88,6 +83,11 @@
 @media(max-width: 768px){
   :root {
     --font-size: 10vw;
+  }
+
+  .today-page {
+    padding: 0;
+    padding-top: var(--space-3);
   }
 }
 

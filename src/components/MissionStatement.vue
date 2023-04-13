@@ -97,6 +97,7 @@
 @media(max-width:768px){
   .mission-statement {
     max-width: unset;
+    border-radius: 0;
     padding: var(--space-3);
   }
 }
