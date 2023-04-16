@@ -1,6 +1,6 @@
 <template>
-  <div class="organizations-list">
-    organizations-list
+  <div class="engineers-page">
+    engineers-page
   </div>
 </template>
 

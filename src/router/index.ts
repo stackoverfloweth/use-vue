@@ -10,12 +10,12 @@ const routeRecords: AppRouteRecord[] = [
   {
     path: '/vue-developers',
     name: 'developers',
-    component: () => import('@/pages/EngineersList.vue'),
+    component: () => import('@/pages/EngineersPage.vue'),
   },
   {
     path: '/vue-organizations',
     name: 'organizations',
-    component: () => import('@/pages/OrganizationsList.vue'),
+    component: () => import('@/pages/OrganizationsPage.vue'),
   },
 ]
 
