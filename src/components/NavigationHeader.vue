@@ -1,9 +1,9 @@
 <template>
   <div class="navigation-header">
-    <p-link class="navigation-header__title" :to="routes.home()">
+    <router-link class="navigation-header__title" :to="routes.home()">
       <img src="/vue-use-logo.png" class="navigation-header__logo">
       <p>Use Vue</p>
-    </p-link>
+    </router-link>
     <p-button
       class="navigation-header__github-link"
       size="lg"
@@ -28,7 +28,7 @@
   border-bottom: 1px solid var(--slate-200);
   align-items: center;
   justify-content: space-between;
-  height: 8vh;
+  height: var(--size-navbar);
 }
 
 .navigation-header__title {

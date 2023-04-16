@@ -1,6 +1,6 @@
 <template>
   <div class="today-page">
-    <p-link class="today-page__count" :to="routes.developers()">
+    <router-link class="today-page__count" :to="routes.developers()">
       <div class="today-page__count-header">
         Developers using Vue <p-tooltip text="Public user profiles on GitHub (non-organization) that use Vue.js">
           <p-icon icon="InformationCircleIcon" />
@@ -9,9 +9,9 @@
       <div class="today-page__count-value">
         {{ userCount }}
       </div>
-    </p-link>
+    </router-link>
 
-    <p-link class="today-page__count" :to="routes.organizations()">
+    <router-link class="today-page__count" :to="routes.organizations()">
       <div class="today-page__count-header">
         Organizations using Vue <p-tooltip text="Public organizations on GitHub that use Vue.js">
           <p-icon icon="InformationCircleIcon" />
@@ -20,7 +20,7 @@
       <div class="today-page__count-value">
         {{ orgCount }}
       </div>
-    </p-link>
+    </router-link>
 
     <div class="today-page__mission">
       <MissionStatement />
