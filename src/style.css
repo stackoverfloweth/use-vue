@@ -272,6 +272,14 @@
     --rose-900: #881337;
 }
 
+.p-button--primary {
+    color: white;
+    background-color: var(--green-600);
+}
+.p-button--primary:not(.p-button--disabled):hover {
+    background-color: var(--green-700);
+}
+
 .p-card,
 .p-empty-state,
 .p-table tbody,
