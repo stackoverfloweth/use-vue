@@ -1,9 +1,9 @@
 <template>
-  <div class="organization-list">
-    <template v-for="organization in organizations" :key="organization.id">
-      <OrganizationListItem :organization="organization" />
+  <p-virtual-scroller class="organization-list" :items="organizations" :item-estimate-height="66">
+    <template #default="{ item }">
+      <OrganizationListItem :organization="item" />
     </template>
-  </div>
+  </p-virtual-scroller>
 </template>
 
 <script lang="ts" setup>
@@ -18,6 +18,10 @@
 <style>
 .organization-list {
   flex-grow: 1;
+}
+
+.organization-list,
+.organization-list .p-virtual-scroller-chunk {
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
