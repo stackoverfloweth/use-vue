@@ -2,6 +2,9 @@
   <div class="organization-page">
     <OrganizationFilter v-model:search="search" v-model:sorting="sorting" class="organization-page__filter" />
     <OrganizationList class="organization-page__list" :organizations="organizations" />
+    <div class="organizations-page__total-count">
+      {{ totalOrganizations?.toLocaleString() }} Total Results
+    </div>
     <PaginationController v-model:pagination="pagination" :loading="organizationsSubscription.loading" class="organization-page__pagination" />
   </div>
 </template>
@@ -38,6 +41,7 @@
   }))
 
   const organizationsSubscription = useSubscription(getVueUsers, [filter], { lifecycle: 'app' })
+  const totalOrganizations = computed(() => organizationsSubscription.response?.count)
   const organizations = ref<User[]>([])
 
   watch(() => organizationsSubscription.response, value => {
@@ -56,6 +60,13 @@
   overflow-y: auto;
   gap: var(--space-2);
   background-color: rgba(255, 255, 255, 0.75);
+}
+
+.organizations-page__total-count {
+  font-size: .85rem;
+  color: var(--slate-500);
+  font-style: italic;
+  text-align: center;
 }
 
 .organization-page__list {

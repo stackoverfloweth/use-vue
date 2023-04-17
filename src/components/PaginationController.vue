@@ -59,7 +59,7 @@
 .pagination-controller {
   display: flex;
   justify-content: center;
-  padding: var(--space-2);
+  margin-bottom: var(--space-2);
   color: white;
 }
 </style>
