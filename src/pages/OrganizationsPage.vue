@@ -2,7 +2,7 @@
   <div class="organization-page">
     <OrganizationFilter v-model:search="search" v-model:sorting="sorting" class="organization-page__filter" />
     <OrganizationList class="organization-page__list" :organizations="organizations" />
-    <PaginationController v-model:pagination="pagination" class="organization-page__pagination" />
+    <PaginationController v-model:pagination="pagination" :pages="pages" class="organization-page__pagination" />
   </div>
 </template>
 
@@ -21,11 +21,11 @@
   const search = ref<UserSearchQuery>({
     type: 'Organization',
   })
-  const sorting = ref<UserSearchSorting>({
+  const sorting = ref<Required<UserSearchSorting>>({
     sort: 'joined',
     order: 'desc',
   })
-  const pagination = ref<Pagination>({
+  const pagination = ref<Required<Pagination>>({
     page: 1,
     perPage: 30,
   })
@@ -37,7 +37,13 @@
   }))
 
   const organizationsSubscription = useSubscription(getVueUsers, [filter], { lifecycle: 'app' })
-  const organizations = computed(() => organizationsSubscription.response ?? [])
+  const organizations = computed(() => organizationsSubscription.response?.items ?? [])
+
+  const pages = computed(() => {
+    const totalItems = organizationsSubscription.response?.count ?? 0
+
+    return Math.ceil(totalItems / pagination.value.perPage)
+  })
 </script>
 
 <style>
