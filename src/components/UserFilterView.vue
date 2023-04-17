@@ -1,10 +1,10 @@
 <template>
-  <div class="organization-filter">
-    <div class="organization-filter__details">
-      <div v-if="searchSummaries.length" class="organization-filter__search">
+  <div class="user-filter-view">
+    <div class="user-filter-view__details">
+      <div v-if="searchSummaries.length" class="user-filter-view__search">
         Where
         <template v-for="(searchSummary, index) in searchSummaries" :key="searchSummary.key">
-          <div class="organization-filter__search-sm">
+          <div class="user-filter-view__search-summary">
             <strong>{{ searchSummary.key }}</strong> is "{{ searchSummary.value }}"
           </div>
           <template v-if="index !== searchSummaries.length - 1">
@@ -12,12 +12,12 @@
           </template>
         </template>
       </div>
-      <div class="organization-filter__sort">
+      <div class="user-filter-view__sort">
         Sorted by <strong>{{ sorting.sort }}</strong> {{ sorting.order }}
       </div>
     </div>
-    <div class="organizations-filter__actions">
-      <p-button>
+    <div class="user-filter-view__actions">
+      <p-button @click="emit('edit')">
         Change
       </p-button>
     </div>
@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { computed, ref } from 'vue'
+  import { computed } from 'vue'
   import { UserSearchQuery } from '@/types/gitHub/userSearchQuery'
   import { UserSearchSorting } from '@/types/gitHub/userSearchSorting'
 
@@ -35,32 +35,11 @@
   }>()
 
   const emit = defineEmits<{
-    (event: 'update:search', value: UserSearchQuery): void,
-    (event: 'update:sorting', value: UserSearchSorting): void,
+    (event: 'edit'): void,
   }>()
 
-  const search = computed({
-    get() {
-      return props.search
-    },
-    set(value) {
-      emit('update:search', value)
-    },
-  })
-
-  const sorting = computed({
-    get() {
-      return props.sorting
-    },
-    set(value) {
-      emit('update:sorting', value)
-    },
-  })
-
-  const editing = ref(false)
-
   const searchSummaries = computed(() => {
-    return Object.entries(search.value)
+    return Object.entries(props.search)
       // .filter(([key]) => key !== 'type')
       .map(([key, value]) => ({
         key,
@@ -70,27 +49,14 @@
 </script>
 
 <style>
-.organization-filter {
+.user-filter-view {
   display: flex;
   justify-content: space-between;
-  background-color: white;
-  font-size: .85rem;
-  color: var(--slate-800);
-  padding: var(--space-2);
 }
 
-.organization-filter__search {
-  grid-area: search;
+.user-filter-view__search {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-1);
-}
-
-.organization-filter__sort {
-  grid-area: sort;
-}
-
-.organization-filter__actions {
-  grid-area: actions;
 }
 </style>

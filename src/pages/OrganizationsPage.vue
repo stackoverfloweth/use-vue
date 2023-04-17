@@ -1,6 +1,6 @@
 <template>
   <div class="organization-page">
-    <OrganizationFilter v-model:search="search" v-model:sorting="sorting" class="organization-page__filter" />
+    <UserFilter v-model:search="search" v-model:sorting="sorting" class="organization-page__filter" />
     <OrganizationList class="organization-page__list" :organizations="organizations" />
     <div class="organizations-page__total-count">
       {{ totalOrganizations?.toLocaleString() }} Total Results
@@ -12,9 +12,9 @@
 <script lang="ts" setup>
   import { useSubscription } from '@prefecthq/vue-compositions'
   import { computed, ref, watch } from 'vue'
-  import OrganizationFilter from '@/components/OrganizationFilter.vue'
   import OrganizationList from '@/components/OrganizationList.vue'
   import PaginationController from '@/components/PaginationController.vue'
+  import UserFilter from '@/components/UserFilter.vue'
   import { User } from '@/models'
   import { getVueUsers } from '@/services/githubApi'
   import { Pagination } from '@/types/gitHub/pagination'
