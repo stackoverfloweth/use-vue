@@ -13,6 +13,8 @@
 
 <style>
 #app {
+  display: flex;
+  flex-direction: column;
   background-position: center;
   background-size: cover;
   background-image: url('/vue-use.png');

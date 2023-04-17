@@ -43,11 +43,17 @@
 <style>
 .organization-page {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  overflow-y: auto;
+  gap: var(--space-2);
   background-color: rgba(255, 255, 255, 0.75);
 }
 
 .organization-page__list {
   max-height: 100%;
   overflow-y: auto;
+  margin: 0 var(--space-2);
 }
 </style>
