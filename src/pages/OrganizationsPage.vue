@@ -2,16 +2,17 @@
   <div class="organization-page">
     <OrganizationFilter v-model:search="search" v-model:sorting="sorting" class="organization-page__filter" />
     <OrganizationList class="organization-page__list" :organizations="organizations" />
-    <PaginationController v-model:pagination="pagination" :pages="pages" class="organization-page__pagination" />
+    <PaginationController v-model:pagination="pagination" :loading="organizationsSubscription.loading" class="organization-page__pagination" />
   </div>
 </template>
 
 <script lang="ts" setup>
   import { useSubscription } from '@prefecthq/vue-compositions'
-  import { computed, ref } from 'vue'
+  import { computed, ref, watch } from 'vue'
   import OrganizationFilter from '@/components/OrganizationFilter.vue'
   import OrganizationList from '@/components/OrganizationList.vue'
   import PaginationController from '@/components/PaginationController.vue'
+  import { User } from '@/models'
   import { getVueUsers } from '@/services/githubApi'
   import { Pagination } from '@/types/gitHub/pagination'
   import { UserSearchQuery } from '@/types/gitHub/userSearchQuery'
@@ -37,12 +38,12 @@
   }))
 
   const organizationsSubscription = useSubscription(getVueUsers, [filter], { lifecycle: 'app' })
-  const organizations = computed(() => organizationsSubscription.response?.items ?? [])
+  const organizations = ref<User[]>([])
 
-  const pages = computed(() => {
-    const totalItems = organizationsSubscription.response?.count ?? 0
-
-    return Math.ceil(totalItems / pagination.value.perPage)
+  watch(() => organizationsSubscription.response, value => {
+    if (value) {
+      organizations.value = organizations.value.concat(value.items)
+    }
   })
 </script>
 
