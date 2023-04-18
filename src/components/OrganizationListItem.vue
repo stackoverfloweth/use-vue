@@ -1,5 +1,5 @@
 <template>
-  <p-link class="organization-list-item">
+  <p-link class="organization-list-item" :to="organization.htmlUrl">
     <img class="organization-list-item__avatar" :src="organization.avatarUrl" alt="organization-avatar">
     <div class="organization-list-item__name">
       {{ organization.login }}
