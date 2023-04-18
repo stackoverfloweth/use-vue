@@ -19,11 +19,4 @@
 .organization-list {
   flex-grow: 1;
 }
-
-.organization-list,
-.organization-list .p-virtual-scroller-chunk {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-}
 </style>
