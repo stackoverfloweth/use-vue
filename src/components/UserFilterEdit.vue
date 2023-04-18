@@ -3,7 +3,7 @@
     <p-form class="user-filter-edit__form" @submit="completeSearch">
       <p-label label="Name">
         <template #default="{ id }">
-          <p-text-input :id="id" v-model="name" />
+          <p-text-input :id="id" v-model="searchValues.textMatch" />
         </template>
       </p-label>
 
@@ -51,7 +51,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { computed, ref } from 'vue'
+  import { ref } from 'vue'
   import { UserSearchQuery } from '@/types/gitHub/userSearchQuery'
   import { UserSearchSorting } from '@/types/gitHub/userSearchSorting'
 
@@ -67,19 +67,6 @@
 
   const searchValues = ref<UserSearchQuery>({ ...props.search })
   const sortValues = ref<UserSearchSorting>({ ...props.sorting })
-
-  const name = computed({
-    get() {
-      return searchValues.value.type === 'Organization' ? searchValues.value.orgName : searchValues.value.userName
-    },
-    set(value) {
-      if (searchValues.value.type === 'Organization') {
-        searchValues.value.orgName = value
-      } else {
-        searchValues.value.userName = value
-      }
-    },
-  })
 
   function removeEmptyValues(input: Record<string, unknown>): Record<string, unknown> {
     const returnValue = { ...input }

@@ -10,6 +10,10 @@ export const mapUserSearchQueryToQueryString: MapFunction<UserSearchQuery, strin
     queries.push(`org:${source.orgName}`)
   }
 
+  if (source.textMatch) {
+    queries.push(source.textMatch)
+  }
+
   if (source.language) {
     queries.push(`language:${source.language}`)
   }
