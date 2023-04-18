@@ -2,9 +2,7 @@
   <div class="today-page">
     <router-link class="today-page__count" :to="routes.developers()">
       <div class="today-page__count-header">
-        Developers using Vue <p-tooltip text="Public user profiles on GitHub (non-organization) that use Vue.js">
-          <p-icon icon="InformationCircleIcon" />
-        </p-tooltip>
+        GitHub Developers using Vue
       </div>
       <div class="today-page__count-value">
         {{ userCount }}
@@ -13,9 +11,7 @@
 
     <router-link class="today-page__count" :to="routes.organizations()">
       <div class="today-page__count-header">
-        Organizations using Vue <p-tooltip text="Public organizations on GitHub that use Vue.js">
-          <p-icon icon="InformationCircleIcon" />
-        </p-tooltip>
+        GitHub Organizations using Vue
       </div>
       <div class="today-page__count-value">
         {{ orgCount }}
