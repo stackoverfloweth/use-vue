@@ -1,7 +1,7 @@
 <template>
-  <div class="organization-page">
-    <UserFilter v-model:search="search" v-model:sorting="sorting" class="organization-page__filter" />
-    <OrganizationList class="organization-page__list" :organizations="organizations" />
+  <div class="organizations-page">
+    <UserFilter v-model:search="search" v-model:sorting="sorting" class="organizations-page__filter" />
+    <OrganizationList class="organizations-page__list" :organizations="organizations" />
     <template v-if="totalOrganizations === 0">
       <div class="organizations-page__empty-results">
         No Results
@@ -15,7 +15,7 @@
         {{ totalOrganizations?.toLocaleString() }} Total Results
       </div>
     </template>
-    <PaginationController v-model:pagination="pagination" :pages="pages" :loading="organizationsSubscription.loading" class="organization-page__pagination" />
+    <PaginationController v-model:pagination="pagination" :pages="pages" :loading="organizationsSubscription.loading" class="organizations-page__pagination" />
   </div>
 </template>
 
@@ -37,7 +37,7 @@
     type: 'Organization',
   })
   const sorting = ref<Required<UserSearchSorting>>({
-    sort: 'joined',
+    sort: 'followers',
     order: 'desc',
   })
   const pagination = ref<Required<Pagination>>({
@@ -51,7 +51,7 @@
     pagination: pagination.value,
   }))
 
-  const organizationsSubscription = useSubscription(getVueUsers, [filter], { lifecycle: 'app' })
+  const organizationsSubscription = useSubscription(getVueUsers, [filter])
   const totalOrganizations = computed(() => organizationsSubscription.response?.count)
   const pages = computed(() => {
     const totalItems = organizationsSubscription.response?.count ?? 0
@@ -86,7 +86,7 @@
 </script>
 
 <style>
-.organization-page {
+.organizations-page {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -111,7 +111,7 @@
   gap: var(--space-2);
 }
 
-.organization-page__list {
+.organizations-page__list {
   max-height: 100%;
   overflow-y: auto;
   margin: 0 var(--space-2);
