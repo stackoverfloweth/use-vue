@@ -38,11 +38,24 @@
     (event: 'edit'): void,
   }>()
 
+  function mapKeys(key: string): string {
+    switch (key) {
+      case 'userName':
+      case 'orgName':
+        return 'name'
+      case 'followersMin':
+        return 'min-followers'
+      case 'followersMax':
+        return 'max-followers'
+      default: return key
+    }
+  }
+
   const searchSummaries = computed(() => {
     return Object.entries(props.search)
-      // .filter(([key]) => key !== 'type')
+      .filter(([key]) => key !== 'type')
       .map(([key, value]) => ({
-        key,
+        key: mapKeys(key),
         value,
       }))
   })
@@ -57,6 +70,6 @@
 .user-filter-view__search {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-1);
+  column-gap: var(--space-1);
 }
 </style>

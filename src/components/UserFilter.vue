@@ -51,6 +51,8 @@
   }
 
   function updateSearchCriteria(criteria: { search: UserSearchQuery, sorting: UserSearchSorting }): void {
+    search.value = criteria.search
+    sorting.value = criteria.sorting
     closeEditor()
   }
 

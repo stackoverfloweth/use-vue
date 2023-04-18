@@ -1,7 +1,7 @@
 <template>
-  <div class="pagination-controller">
-    <template v-if="canLoadMore">
-      <p-button flat rounded :loading="loading" @click="loadMore">
+  <div v-if="canLoadMore" class="pagination-controller">
+    <template v-if="hitGitHubMax">
+      <p-button flat :loading="loading" @click="loadMore">
         Load More
       </p-button>
     </template>
@@ -17,6 +17,7 @@
 
   const props = defineProps<{
     pagination: Required<Pagination>,
+    pages: number,
     loading?: boolean,
   }>()
 
@@ -45,9 +46,10 @@
     },
   })
 
-  const canLoadMore = computed(() => {
-    const gitHubMax = 1000
-    return page.value * pagination.value.perPage < gitHubMax
+  const canLoadMore = computed(() => page.value < props.pages)
+
+  const hitGitHubMax = computed(() => {
+    return page.value * pagination.value.perPage < 1000
   })
 
   function loadMore(): void {
@@ -59,7 +61,6 @@
 .pagination-controller {
   display: flex;
   justify-content: center;
-  margin-bottom: var(--space-2);
   color: white;
 }
 </style>
